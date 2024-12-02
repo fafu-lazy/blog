@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="DBMS(databse magament sysytem)
+sql 语言
+RDBMS （关联式资料库语言）此外的是非关联式
+资料储存成表格再做关联
+
+须知1名称要用
+代码一12primary key 主键：属性 表示每一笔唯一资料foreign key 外键:可对应另外一张表格（再做一个属性，使两" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>mysql笔记 | hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="DBMS(databse magament sysytem) sql 语言 RDBMS （关联式资料库语言）此外的是非关联式 资料储存成表格再做关联  须知1名称要用 代码一12primary key 主键：属性 表示每一笔唯一资料foreign key 外键:可对应另外一张表格（再做一个属性，使两个表格产生关联）  121.一个表格中，一个属性既可以是主键也可以是外键；外键也可以连接本表格2.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql笔记">
+<meta property="og:url" content="http://example.com/2024/11/17/mysql%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="hexo">
+<meta property="og:description" content="DBMS(databse magament sysytem) sql 语言 RDBMS （关联式资料库语言）此外的是非关联式 资料储存成表格再做关联  须知1名称要用 代码一12primary key 主键：属性 表示每一笔唯一资料foreign key 外键:可对应另外一张表格（再做一个属性，使两个表格产生关联）  121.一个表格中，一个属性既可以是主键也可以是外键；外键也可以连接本表格2.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-11-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-21T15:53:02.216Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="hexo" rel="home">hexo</a>
+      </h1>
+      
+        <h2 class="site-description hitokoto"></h2>
+        <script type="text/javascript" src="https://v1.hitokoto.cn/?encode=js"></script>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Home2</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-mysql笔记" class="post-mysql笔记 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      mysql笔记
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://example.com/2024/11/17/mysql%E7%AC%94%E8%AE%B0/" data-id="cm476du2c0003gsv155pp39nt" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <ul>
+<li>DBMS(databse magament sysytem)</li>
+<li>sql 语言</li>
+<li>RDBMS （关联式资料库语言）此外的是非关联式</li>
+<li>资料储存成表格再做关联</li>
+</ul>
+<h1 id="须知"><a href="#须知" class="headerlink" title="须知"></a>须知</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">名称要用</span><br></pre></td></tr></table></figure>
+<h1 id="代码一"><a href="#代码一" class="headerlink" title="代码一"></a>代码一</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">primary key 主键：属性 表示每一笔唯一资料</span><br><span class="line">foreign key 外键:可对应另外一张表格（再做一个属性，使两个表格产生关联）</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.一个表格中，一个属性既可以是主键也可以是外键；外键也可以连接本表格</span><br><span class="line">2.两个属性都有一样的，可以设多个主键。这样把两个连在一起看就是唯一的</span><br></pre></td></tr></table></figure>
+<h1 id="代码二"><a href="#代码二" class="headerlink" title="代码二"></a>代码二</h1><pre><code>create database `库名`;（创建资料库）
+show databases;(展现所有资料库)
+
+
+- 
+</code></pre>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2024/11/17/mysql%E7%AC%94%E8%AE%B0/">
+    <time datetime="2024-11-16T16:00:00.000Z" class="entry-date">
+        2024-11-17
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2024/11/17/%E6%96%87%E7%AB%A0/" rel="prev"><span class="meta-nav">←</span> markdown使用教程</a></span>
+    
+    
+        <span class="nav-next"><a href="/2024/10/04/hello-world/" rel="next">Hello World <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2024/11/26/sql%E6%B3%A8%E5%85%A5/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/11/21/php%E7%AC%94%E8%AE%B0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/11/17/%E6%96%87%E7%AB%A0/">markdown使用教程</a>
+          </li>
+        
+          <li>
+            <a href="/2024/11/17/mysql%E7%AC%94%E8%AE%B0/">mysql笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2024/10/04/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  
+    
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2024 John Doe
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
